@@ -358,4 +358,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if(e.isInt
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+</script>
