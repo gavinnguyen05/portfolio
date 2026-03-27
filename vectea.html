@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vectea — Gavin Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Inter:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --ink:          #0D0C0B;
+  --paper:        #F4F2EE;
+  --warm-white:   #FFFFFF;
+  --gray-1:       #E8E4DF;
+  --gray-2:       #C8C3BC;
+  --gray-3:       #968F86;
+  --gray-4:       #3D3830;
+  --accent:       #1A471E;
+  --accent-light: #8aab8c;
+  /* Vectea brand colors */
+  --vectea-purple:      #6C63FF;
+  --vectea-purple-mid:  rgba(108,99,255,0.16);
+  --vectea-purple-light:rgba(108,99,255,0.07);
+  --vectea-orange:      #F5A623;
+  --vectea-navy:        #1E1B3A;
+  --f-head: 'Inter Tight', 'Helvetica Neue', Helvetica, sans-serif;
+  --f-sans: 'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03; mix-blend-mode: multiply;
+}
+
+/* ── NAV ── */
+.nav-menu-btn { display: none; }
+nav {
+  position: static;
+  padding: 0 56px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-1);
+}
+.nav-logo { font-family: var(--f-head); font-weight: 700; font-size: 15px; letter-spacing: -0.03em; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-4); text-decoration: none; position: relative; transition: color .15s; }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width .2s ease; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+.nav-resume .arrow { display: inline-block; transition: transform .15s ease; margin-left: 2px; }
+.nav-resume:hover .arrow { transform: translate(2px, -2px); }
+.nav-cta {
+  font-family: var(--f-head); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--paper) !important; background: var(--accent);
+  padding: 9px 18px; text-decoration: none;
+  transition: background .15s !important;
+}
+.nav-cta:hover { background: #4a6b4c !important; color: var(--paper) !important; }
+.nav-cta::after { display: none !important; }
+
+.nav-menu-btn {
+  flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 8px; margin-right: -8px;
+  background: none; border: none;
+}
+.nav-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
+.nav-menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-menu-btn.open span:nth-child(2) { opacity: 0; }
+.nav-menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.mobile-nav {
+  background: var(--paper); border-bottom: 1px solid var(--gray-1);
+  padding: 0 24px; max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+}
+.mobile-nav.open { max-height: 300px; padding: 16px 24px 24px; }
+.mobile-nav a {
+  display: block; font-size: 15px; font-weight: 600;
+  font-family: var(--f-head); letter-spacing: -0.02em;
+  color: var(--ink); text-decoration: none;
+  padding: 14px 0; border-bottom: 1px solid var(--gray-1);
+}
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { color: var(--accent); }
+
+/* ── CS HERO ── */
+.cs-hero { border-bottom: 1px solid var(--gray-1); }
+.cs-hero-inner { max-width: 1280px; margin: 0 auto; padding: 64px 56px 0; }
+.cs-kicker {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent);
+}
+.cs-kicker-div { width: 1px; height: 12px; background: var(--gray-2); }
+.cs-kicker-gray { color: var(--gray-3); }
+.cs-headline {
+  font-family: var(--f-head); font-weight: 700;
+  font-size: clamp(36px, 4.5vw, 60px);
+  letter-spacing: -0.03em; line-height: 1.0;
+  color: var(--ink); max-width: 820px; margin-bottom: 56px;
+}
+
+/* Hero image */
+.cs-hero-img {
+  width: 100%; height: 500px;
+  background: #f0ede8;
+  position: relative; overflow: hidden;
+}
+.cs-hero-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 50%;
+  display: block;
+}
+
+/* ── META STRIP ── */
+.cs-meta {
+  max-width: 1280px; margin: 0 auto; padding: 0 56px;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-bottom: 1px solid var(--gray-1);
+}
+.cs-meta-cell { padding: 32px 0; border-right: 1px solid var(--gray-1); padding-right: 40px; }
+.cs-meta-cell:last-child { border-right: none; }
+.cs-meta-cell:not(:first-child) { padding-left: 40px; }
+.meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-3); margin-bottom: 8px; }
+.meta-val { font-family: var(--f-head); font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: var(--gray-4); line-height: 1.6; }
+.meta-sub { font-size: 12px; font-weight: 400; color: var(--gray-3); margin-top: 2px; }
+
+/* ── BODY LAYOUT ── */
+.cs-body {
+  max-width: 1280px; margin: 0 auto;
+  padding: 80px 56px 120px;
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 80px; align-items: start;
+}
+
+/* ── SIDEBAR ── */
+.cs-sidebar { position: sticky; top: 32px; }
+.sidebar-nav { list-style: none; }
+.sidebar-nav li a {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray-2); text-decoration: none;
+  padding: 10px 0 10px 16px;
+  border-left: 2px solid var(--gray-1);
+  transition: color .2s, border-color .2s; line-height: 1.3;
+}
+.sidebar-nav li a:hover { color: var(--gray-4); }
+.sidebar-nav li a.active { color: var(--accent); border-left-color: var(--accent); }
+.sidebar-back {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 40px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gray-3); text-decoration: none; transition: color .15s;
+}
+.sidebar-back:hover { color: var(--accent); }
+
+/* ── CONTENT ── */
+.cs-content { min-width: 0; }
+.cs-section { margin-bottom: 96px; }
+.cs-section:last-child { margin-bottom: 0; }
+
+.sec-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+}
+.sec-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--gray-1); }
+
+.cs-section h2 {
+  font-family: var(--f-head); font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.03em;
+  line-height: 1.05; margin-bottom: 20px; margin-top: 32px; color: var(--ink);
+}
+.sec-eyebrow + h2 { margin-top: 0; }
+
+.cs-section p {
+  font-size: 15px; font-weight: 400; line-height: 1.75;
+  color: var(--gray-4); max-width: 680px; margin-bottom: 16px;
+}
+.intro-body { font-size: 16px !important; color: var(--gray-4) !important; line-height: 1.7 !important; }
+
+.cs-callout {
+  border-left: 2px solid var(--accent); padding: 20px 28px;
+  margin: 40px 0; background: rgba(45,58,46,0.04);
+}
+.cs-callout p {
+  font-family: var(--f-head); font-weight: 600; font-size: 18px;
+  letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); margin: 0; max-width: none;
+}
+
+/* Vectea-tinted callout */
+.cs-callout-vectea {
+  border-left: 2px solid var(--vectea-purple); padding: 20px 28px;
+  margin: 40px 0; background: var(--vectea-purple-light);
+}
+.cs-callout-vectea p {
+  font-family: var(--f-head); font-weight: 600; font-size: 18px;
+  letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); margin: 0; max-width: none;
+}
+
+/* ── IMAGE PLACEHOLDERS ── */
+.cs-img {
+  width: 100%; background: var(--gray-1); border: 1px solid var(--gray-2);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  margin: 32px 0 6px;
+}
+.cs-img::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+}
+.cs-img-label {
+  position: relative; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gray-3); text-align: center; line-height: 2;
+  padding: 56px 24px;
+}
+.cs-img.tall .cs-img-label { padding: 80px 24px; }
+.cs-img.short .cs-img-label { padding: 32px 24px; }
+.cs-caption {
+  font-size: 12px !important; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: none; color: var(--gray-3) !important;
+  margin-top: 8px !important; margin-bottom: 32px;
+  font-family: var(--f-sans);
+  display: block; line-height: 1.5 !important;
+}
+
+/* ── 2-COL GRID ── */
+.img-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
+
+/* ── PROBLEM CARDS ── */
+.pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 40px 0; }
+.pain-card { border: 1px solid var(--gray-1); padding: 28px 24px; background: var(--warm-white); }
+.pain-card p { font-size: 14px; line-height: 1.65; color: var(--gray-4); margin: 0; max-width: none; }
+.pain-card .pain-num {
+  font-family: var(--f-head); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--vectea-purple); margin-bottom: 10px; display: block;
+}
+.pain-card strong { font-weight: 600; color: var(--ink); display: block; margin-bottom: 6px; font-size: 14px; }
+
+/* ── HMW BLOCK ── */
+.hmw-block {
+  background: var(--vectea-navy);
+  padding: 56px 48px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+.hmw-block::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hmw-block::after {
+  content: '';
+  position: absolute; bottom: -40px; left: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hmw-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--vectea-purple); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.hmw-label::after { content: ''; flex: 0 0 32px; height: 1px; background: rgba(108,99,255,0.4); }
+.hmw-question {
+  font-family: var(--f-head); font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 34px); letter-spacing: -0.03em; line-height: 1.2;
+  color: #fff; position: relative; z-index: 1; max-width: 640px;
+}
+.hmw-question strong { color: #fff; font-weight: 700; }
+
+/* ── FEATURE SHOWCASE ── */
+.feature-block {
+  border: 1px solid var(--gray-1); overflow: hidden;
+  margin: 40px 0;
+}
+.feature-header {
+  padding: 20px 28px; border-bottom: 1px solid var(--gray-1);
+  display: flex; align-items: center; gap: 14px;
+  background: var(--warm-white);
+}
+.feature-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon.purple { background: var(--vectea-purple-mid); }
+.feature-icon.orange { background: rgba(245,166,35,0.15); }
+.feature-header-text h3 {
+  font-family: var(--f-head); font-size: 16px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--ink); margin: 0;
+}
+.feature-header-text p { font-size: 12px; color: var(--gray-3); margin: 3px 0 0; max-width: none; }
+.feature-body { display: grid; grid-template-columns: 1fr 1fr; }
+.feature-img-side {
+  background: var(--vectea-navy);
+  min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.feature-text-side {
+  padding: 36px 32px;
+  background: var(--warm-white);
+  border-left: 1px solid var(--gray-1);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.feature-text-side p { font-size: 14px; line-height: 1.7; color: var(--gray-4); max-width: none; margin-bottom: 12px; }
+.feature-text-side p:last-child { margin-bottom: 0; }
+.feature-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--vectea-purple); margin-bottom: 16px;
+}
+.feature-badge::before {
+  content: ''; display: block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--vectea-purple);
+}
+
+/* ── COMPETITIVE ANALYSIS TABLE ── */
+.comp-table { width: 100%; border-collapse: collapse; margin: 40px 0; font-size: 13px; }
+.comp-table th {
+  font-family: var(--f-head); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3);
+  padding: 14px 20px; border-bottom: 1px solid var(--gray-1);
+  text-align: left; background: var(--warm-white);
+}
+.comp-table th:first-child { width: 160px; }
+.comp-table td {
+  padding: 16px 20px; border-bottom: 1px solid var(--gray-1);
+  color: var(--gray-4); line-height: 1.55; vertical-align: top;
+  background: var(--warm-white);
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table td:first-child { font-weight: 600; color: var(--ink); }
+.comp-table .pro { color: #2a7c3f; }
+.comp-table .con { color: #b34a3a; }
+.comp-table .app-name {
+  font-family: var(--f-head); font-weight: 700; font-size: 13px;
+  color: var(--ink); display: block; margin-bottom: 4px;
+}
+
+/* ── FINDING ROWS ── */
+.cs-findings { display: flex; flex-direction: column; gap: 2px; margin: 40px 0; background: var(--gray-1); }
+.cs-finding {
+  background: var(--warm-white); padding: 24px 28px;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.cs-finding-num { font-family: var(--f-head); font-weight: 700; font-size: 13px; color: var(--accent); flex-shrink: 0; padding-top: 1px; }
+.cs-finding-body { font-size: 14px; line-height: 1.65; color: var(--gray-4); }
+.cs-finding-body strong { font-weight: 600; color: var(--ink); display: block; margin-bottom: 4px; }
+
+/* ── CAROUSEL (reuse same pattern) ── */
+.cs-carousel { margin: 40px 0; }
+.cs-carousel-viewport { overflow: hidden; border: 1px solid var(--gray-1); background: var(--vectea-navy); }
+.cs-carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+.cs-carousel-slide { flex: 0 0 100%; position: relative; min-height: 400px; display: flex; align-items: center; justify-content: center; }
+.cs-carousel-controls {
+  display: flex; align-items: center; justify-content: space-between; margin-top: 14px;
+}
+.cs-carousel-arrows { display: flex; gap: 8px; }
+.cs-carousel-arrow {
+  width: 36px; height: 36px; border: 1px solid var(--gray-2);
+  background: var(--warm-white); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--ink);
+  transition: background .15s, border-color .15s;
+}
+.cs-carousel-arrow:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.cs-carousel-arrow:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+.cs-carousel-dots { display: flex; gap: 6px; align-items: center; }
+.cs-carousel-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gray-2); border: none; cursor: pointer; padding: 0;
+  transition: background .2s, transform .2s;
+}
+.cs-carousel-dot.active { background: var(--accent); transform: scale(1.3); }
+.cs-carousel-counter { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3); }
+
+/* Slide placeholder graphics */
+.slide-ph {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%; padding: 56px 32px; gap: 12px;
+}
+.slide-ph-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); text-align: center;
+}
+
+/* Inline SVG panel mockups */
+.mockup-svg { max-width: 480px; width: 100%; }
+
+/* ── NEXT STEPS LIST ── */
+.next-list { list-style: none; margin: 16px 0; }
+.next-list li {
+  font-size: 15px; line-height: 1.7; color: var(--gray-4);
+  padding: 10px 0; border-bottom: 1px solid var(--gray-1);
+  display: flex; gap: 16px; align-items: baseline;
+}
+.next-list li:last-child { border-bottom: none; }
+.next-list li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+.limit-list { list-style: none; margin: 16px 0; }
+.limit-list li {
+  font-size: 15px; line-height: 1.7; color: var(--gray-4);
+  padding: 10px 0; border-bottom: 1px solid var(--gray-1);
+  display: flex; gap: 16px; align-items: baseline;
+}
+.limit-list li:last-child { border-bottom: none; }
+.limit-list li::before { content: '×'; color: #b34a3a; font-weight: 700; flex-shrink: 0; }
+
+/* Two-col implication */
+.implication-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--gray-1); margin: 40px 0; }
+.implication-card { background: var(--warm-white); padding: 32px 28px; }
+.implication-card .implication-who {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--vectea-purple); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.implication-card .implication-who::after { content: ''; flex: 1; height: 1px; background: var(--vectea-purple-mid); }
+.implication-card h4 { font-family: var(--f-head); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+.implication-card p { font-size: 14px; line-height: 1.65; color: var(--gray-4); margin: 0; max-width: none; }
+
+/* ── FOOTER ── */
+.cs-footer { background: var(--ink); border-top: 2px solid var(--accent); padding: 64px 56px; }
+.cs-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.cs-footer-back {
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+  transition: gap .15s, color .15s;
+}
+.cs-footer-back:hover { gap: 16px; color: var(--accent-light); }
+.cs-next-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 8px; text-align: right; }
+.cs-next-link {
+  font-family: var(--f-head); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--paper); text-decoration: none;
+  display: flex; align-items: center; gap: 10px; justify-content: flex-end;
+  transition: color .15s, gap .15s;
+}
+.cs-next-link:hover { color: var(--accent-light); gap: 16px; }
+
+.site-footer {
+  background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 56px; display: flex; justify-content: space-between; align-items: center;
+}
+.footer-name { font-family: var(--f-head); font-weight: 700; font-size: 13px; letter-spacing: -0.02em; color: var(--gray-3); }
+.footer-right { font-size: 11px; color: var(--gray-3); letter-spacing: 0.04em; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── ANNOTATED IMAGE ── */
+.anno-outer {
+  background: var(--vectea-navy);
+  padding: 40px 48px;
+  margin: 32px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.anno-img-wrap {
+  position: relative;
+  flex: 0 0 auto;
+  width: 320px;
+}
+.anno-img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+}
+.anno-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.anno-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0 0 160px;
+}
+.anno-label {
+  background: rgba(255,255,255,0.95);
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.anno-title {
+  font-family: var(--f-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: #0D0C0B;
+}
+.anno-sub {
+  font-size: 10px;
+  color: #968F86;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .anno-outer { flex-direction: column; padding: 28px 20px; }
+  .anno-img-wrap { width: 100%; }
+  .anno-labels { flex-direction: row; flex-wrap: wrap; gap: 10px; flex: none; width: 100%; }
+  .anno-label { flex: 1 1 calc(50% - 5px); }
+}
+
+/* ── VECTEA LOGO ── */
+.vectea-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+}
+.vectea-logo-mark {
+  width: 26px;
+  height: 26px;
+  background: #6C63FF;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.vectea-logo-mark svg {
+  width: 14px;
+  height: 14px;
+}
+.vectea-logo-word {
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.vectea-logo-word span {
+  color: #6C63FF;
+}
+/* Small variant for inline use */
+.vectea-logo.sm .vectea-logo-mark {
+  width: 20px; height: 20px; border-radius: 5px;
+}
+.vectea-logo.sm .vectea-logo-mark svg { width: 11px; height: 11px; }
+.vectea-logo.sm .vectea-logo-word { font-size: 13px; }
+/* Large variant for hero kicker */
+.vectea-logo.lg .vectea-logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+}
+.vectea-logo.lg .vectea-logo-mark svg { width: 20px; height: 20px; }
+.vectea-logo.lg .vectea-logo-word { font-size: 22px; }
+/* Inverted for dark backgrounds */
+.vectea-logo.inv .vectea-logo-word { color: #fff; }
+.vectea-logo.inv .vectea-logo-word span { color: #a89fff; }
+
+/* ── INLINE ICONS ── */
+.feat-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 4px;
+  position: relative;
+  top: -1px;
+}
+
+/* ── BOOKSHELF VISUAL ── */
+.bk-visual {
+  margin: 24px 0 32px;
+  border: 1px solid var(--gray-1);
+  background: var(--warm-white);
+  padding: 24px 16px 16px;
+}
+
+/* ── ITERATION IMAGES ── */
+.iter-img-wrap {
+  background: var(--vectea-navy);
+  padding: 32px;
+  margin: 32px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iter-img {
+  width: 100%;
+  max-width: 680px;
+  display: block;
+  border-radius: 4px;
+}
+.iter-subhead {
+  font-family: var(--f-head);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 64px 0 8px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+  .cs-hero-inner { padding: 48px 24px 0; }
+  .cs-meta { padding: 0 24px; grid-template-columns: 1fr 1fr; }
+  .cs-meta-cell:nth-child(2) { border-right: none; }
+  .cs-meta-cell:nth-child(3) { padding-left: 0; }
+  .cs-body { padding: 48px 24px 80px; grid-template-columns: 1fr; gap: 0; }
+  .cs-sidebar { position: static; margin-bottom: 40px; }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sidebar-nav li a { border-left: none; border-bottom: 2px solid var(--gray-1); padding-left: 0; padding-bottom: 6px; font-size: 10px; }
+  .sidebar-nav li a.active { border-bottom-color: var(--accent); }
+  .sidebar-back { display: none; }
+  .pain-grid, .img-2col, .implication-grid { grid-template-columns: 1fr; }
+  .feature-body { grid-template-columns: 1fr; }
+  .feature-text-side { border-left: none; border-top: 1px solid var(--gray-1); }
+  .cs-footer { padding: 48px 24px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+  .hero-graphic { flex-direction: column; gap: 24px; }
+  .vectea-wordmark { font-size: 36px; }
+}
+
+@media (max-width: 600px) {
+  .cs-hero-img { height: 300px; }
+  nav { padding: 0 20px; height: 56px; }
+  .hmw-block { padding: 36px 28px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Gavin Nguyen</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank" class="nav-resume">Resume <span class="arrow">↗</span></a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html#work" class="mobile-nav-link">Work</a>
+  <a href="index.html#about" class="mobile-nav-link">About</a>
+  <a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank" class="mobile-nav-link">Resume ↗</a>
+  <a href="index.html#contact" class="mobile-nav-link">Get in touch</a>
+</div>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-kicker">
+      <span>UX/UI Design</span>
+      <span class="cs-kicker-div"></span>
+      <span class="cs-kicker-gray">Product Concept</span>
+    </div>
+    <div style="margin-bottom:20px;">
+      <img src="https://i.postimg.cc/NMn2xVZZ/vectealogo.png" alt="Vectea" style="height:36px; display:block;">
+    </div>
+    <h1 class="cs-headline">Rethinking layer organization for modern digital artists.</h1>
+  </div>
+
+  <!-- Hero image -->
+  <div class="cs-hero-img">
+    <img src="https://i.postimg.cc/gkq9CYQc/Mockuuups_Copy_of_Apple_Studio_Display_mockup_on_a_white_pedestal.jpg" alt="Vectea running on an Apple Studio Display">
+  </div>
+</header>
+
+<!-- META -->
+<div class="cs-meta">
+  <div class="cs-meta-cell">
+    <div class="meta-label">Role</div>
+    <div class="meta-val">UX/UI Designer</div>
+  </div>
+  <div class="cs-meta-cell">
+    <div class="meta-label">Team</div>
+    <div class="meta-val">Alice Liang · Alexa Der<br>Gavin Nguyen · Vivian Nguyen · Sarah Sun</div>
+  </div>
+  <div class="cs-meta-cell">
+    <div class="meta-label">Tools</div>
+    <div class="meta-val">Figma<br>Adobe Photoshop</div>
+  </div>
+  <div class="cs-meta-cell">
+    <div class="meta-label">Timeline</div>
+    <div class="meta-val">4 Weeks</div>
+    <div class="meta-sub">Oct 2025 – Dec 2025</div>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="cs-body">
+
+  <!-- SIDEBAR -->
+  <aside class="cs-sidebar">
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#solution">The Solution</a></li>
+      <li><a href="#iterations">Iterations</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+    <a class="sidebar-back" href="index.html">← Back to all projects</a>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="cs-content">
+
+    <!-- OVERVIEW -->
+    <section class="cs-section reveal" id="overview">
+      <div class="sec-eyebrow">Overview</div>
+      <h2>A design tool built around how artists actually think.</h2>
+
+      <p class="intro-body">Vectea is a conceptual image-editing app that introduces a new layer organization system on top of a traditional Photoshop-like environment, allowing artists to group and manage layers by what they mean rather than where they sit in the stack.</p>
+
+      <p>Imagine you're in a library looking for a long book to read on a flight. The books are only categorized by genre: Mystery, Fantasy, Romance, and Sci-fi. As a result, you have to manually check each book to find one long enough for your flight.</p>
+
+      <div class="bk-visual reveal">
+        <svg width="100%" viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg">
+
+          <text x="20" y="18" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#3D3830">Sorted by genre</text>
+          <rect x="20" y="130" width="280" height="5" rx="2" fill="#C8C3BC"/>
+          <rect x="28"  y="72" width="22" height="58" rx="2" fill="#3D3830"/>
+          <rect x="54"  y="82" width="18" height="48" rx="2" fill="#3D3830"/>
+          <rect x="78"  y="62" width="20" height="68" rx="2" fill="#6C63FF"/>
+          <rect x="102" y="74" width="16" height="56" rx="2" fill="#534AB7"/>
+          <rect x="122" y="68" width="18" height="62" rx="2" fill="#7F77DD"/>
+          <rect x="146" y="76" width="18" height="54" rx="2" fill="#D85A30"/>
+          <rect x="168" y="68" width="20" height="62" rx="2" fill="#993C1D"/>
+          <rect x="196" y="64" width="18" height="66" rx="2" fill="#1D9E75"/>
+          <rect x="218" y="74" width="16" height="56" rx="2" fill="#0F6E56"/>
+          <rect x="238" y="68" width="20" height="62" rx="2" fill="#085041"/>
+          <text x="41"  y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#968F86">Mystery</text>
+          <text x="110" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#6C63FF">Fantasy</text>
+          <text x="167" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#D85A30">Romance</text>
+          <text x="224" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#1D9E75">Sci-fi</text>
+          <text x="160" y="172" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#968F86">One way to organize. That's it.</text>
+
+          <line x1="340" y1="10" x2="340" y2="190" stroke="#E8E4DF" stroke-width="1"/>
+
+          <text x="360" y="18" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#3D3830">You need a long read for your flight...</text>
+          <rect x="358" y="130" width="300" height="5" rx="2" fill="#C8C3BC"/>
+          <rect x="366" y="82" width="18" height="48" rx="2" fill="#D3D1C7"/>
+          <rect x="388" y="86" width="16" height="44" rx="2" fill="#D3D1C7"/>
+          <rect x="408" y="62" width="20" height="68" rx="2" fill="#6C63FF"/>
+          <rect x="432" y="78" width="16" height="52" rx="2" fill="#D3D1C7"/>
+          <rect x="452" y="64" width="20" height="66" rx="2" fill="#534AB7"/>
+          <rect x="476" y="84" width="18" height="46" rx="2" fill="#D3D1C7"/>
+          <rect x="498" y="62" width="20" height="68" rx="2" fill="#D85A30"/>
+          <rect x="522" y="80" width="16" height="50" rx="2" fill="#D3D1C7"/>
+          <rect x="542" y="60" width="22" height="70" rx="2" fill="#1D9E75"/>
+          <rect x="568" y="82" width="16" height="48" rx="2" fill="#D3D1C7"/>
+          <rect x="588" y="78" width="18" height="52" rx="2" fill="#D3D1C7"/>
+          <rect x="610" y="64" width="20" height="66" rx="2" fill="#085041"/>
+          <rect x="634" y="84" width="16" height="46" rx="2" fill="#D3D1C7"/>
+
+          <!-- bracket over tall books -->
+          <path d="M408 58 L408 38 L656 38 L656 58" fill="none" stroke="#6C63FF" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <text x="532" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#6C63FF">long reads, scattered across every genre</text>
+
+          <text x="510" y="172" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#968F86">You have to check each one manually.</text>
+
+        </svg>
+      </div>
+
+      <p>This sorting system forces people to tediously check each book when searching for anything other than genre, because the organization ignores other attributes like length and acclaim.</p>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="cs-section reveal" id="problem">
+      <div class="sec-eyebrow">The Problem</div>
+      <h2>Layers don't know what they mean.</h2>
+      <p>The same applies to layer panels in image and vector editing applications like Photoshop and Illustrator. Everything is strictly organized by its position in the stack, without any reference to meaning. If a series of layers is semantically related (say, parts of a deer, or a set of lighting effects) they can be grouped into a folder, but only if they are next to each other in the stack. It is a rigid system where organization is completely dependent on ordering.</p>
+
+      <div class="cs-findings reveal">
+        <div class="cs-finding">
+          <div class="cs-finding-num">01</div>
+          <div class="cs-finding-body">
+            <strong>Breaks creative flow</strong>
+            Artists have to constantly context-switch between different groups of layers, pulling focus away from creative decisions and toward administrative cleanup.
+          </div>
+        </div>
+        <div class="cs-finding">
+          <div class="cs-finding-num">02</div>
+          <div class="cs-finding-body">
+            <strong>Collaboration issues</strong>
+            Conceptual organization lives only in the creator's head. Anyone else opening the file has no idea what the intended structure is, unless there's extensive renaming done beforehand (and there usually isn't).
+          </div>
+        </div>
+        <div class="cs-finding">
+          <div class="cs-finding-num">03</div>
+          <div class="cs-finding-body">
+            <strong>Error-prone editing</strong>
+            Moving one element without its associated shadow or lighting layer creates visual inconsistencies that are tedious to catch and even more tedious to fix.
+          </div>
+        </div>
+      </div>
+
+      <p>We looked at Figma, Adobe Photoshop, and Blender and found the same core limitation across all three: they organize layers by location, not meaning. Figma's components only relate layers already inside the same group. Photoshop's Smart Objects enforce a single hierarchy. Blender's node system is powerful but far too technical for most 2D illustrators.</p>
+
+      <div class="hmw-block reveal">
+        <div class="hmw-label">How Might We</div>
+        <div class="hmw-question">
+          How might we <strong>reduce cognitive overhead</strong> by making conceptual layer relationships <strong>visible and actionable</strong> within design tools?
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="cs-section reveal" id="solution">
+      <div class="sec-eyebrow">The Solution</div>
+      <h2>Two features. One unified system.</h2>
+      <p>Vectea introduces two features designed to sit alongside the traditional layer stack rather than replace it. Together they close the gap between how a composition is actually built and how an artist thinks about it.</p>
+
+      <div class="implication-grid reveal">
+        <div class="implication-card">
+          <div class="implication-who">Feature 01</div>
+          <h4><img src="https://i.postimg.cc/c4MPtSqy/relationship-icon.png" class="feat-icon" alt="">Relationships</h4>
+          <p>Group layers by what they mean, not where they live. Tag any combination of layers across different folders as belonging to the same subject ("animal," "background," "lighting") and work with them as a single unit. Clicking a relationship chip filters the layer view to show just those layers, ready to edit together.</p>
+        </div>
+        <div class="implication-card">
+          <div class="implication-who">Feature 02</div>
+          <h4><img src="https://i.postimg.cc/nVwJcZJ8/attribute-icon.png" class="feat-icon" alt="">Attributes</h4>
+          <p>Define a bundle of visual properties (opacity, blend mode, color tint, Gaussian blur) and assign it to any layers regardless of where they are in the hierarchy. Edit the Attribute once and every assigned layer updates. A colored dot on each layer shows what's applied at a glance.</p>
+        </div>
+      </div>
+
+      <div class="cs-callout-vectea reveal">
+        <p style="margin-bottom:8px;"><img src="https://i.postimg.cc/NMn2xVZZ/vectealogo.png" alt="Vectea" style="height:18px; display:block;"></p>
+        <p>Neither feature requires reorganizing your layer stack. Relationships and Attributes live on top of your existing file structure.</p>
+      </div>
+
+      <!-- Relationships mockup -->
+      <h3 style="font-family:var(--f-head);font-size:20px;font-weight:700;letter-spacing:-0.02em;margin:56px 0 8px;color:var(--ink);display:flex;align-items:center;gap:8px;"><img src="https://i.postimg.cc/c4MPtSqy/relationship-icon.png" style="width:18px;height:18px;" alt="">Relationships in action</h3>
+      <p>The Relationships panel is a new tab that sits right alongside "All Layers." Designers create named relationship categories, assign layers to them, and the view reorganizes to show everything grouped by concept rather than stack position.</p>
+
+      <div class="reveal" style="margin: 32px 0 32px;">
+        <img src="https://i.postimg.cc/85bGwV2z/relationship-preview.png" alt="Relationships View panel" style="width:100%; display:block; border-radius:4px; border:1px solid var(--gray-1);">
+      </div>
+
+      <!-- Attributes mockup -->
+      <h3 style="font-family:var(--f-head);font-size:20px;font-weight:700;letter-spacing:-0.02em;margin:56px 0 8px;color:var(--ink);display:flex;align-items:center;gap:8px;"><img src="https://i.postimg.cc/nVwJcZJ8/attribute-icon.png" style="width:18px;height:18px;" alt="">Attributes in action</h3>
+      <p>An Attribute is a named set of visual properties. Assign it to any layers and they all inherit those settings and stay in sync whenever the Attribute is edited. The orange dot markers make it easy to see exactly which layers are connected.</p>
+
+      <div class="reveal" style="margin: 32px 0 32px;">
+        <img src="https://i.postimg.cc/HkhbsrkF/attrributes.png" alt="Attributes View panel" style="width:100%; display:block; border-radius:4px; border:1px solid var(--gray-1);">
+      </div>
+    </section>
+
+    <!-- ITERATIONS -->
+    <section class="cs-section reveal" id="iterations">
+      <div class="sec-eyebrow">Early Iterations</div>
+      <h2>From sketches to high-fidelity.</h2>
+      <p>Our iteration process moved from rough sketches to full Figma prototypes. Along the way we explored a few different directions: dual-pane views, dropdown filters, component-based linking. The Relationships and Attributes split was what eventually clicked as the most natural way to match how artists actually think.</p>
+
+      <div class="iter-img-wrap reveal">
+        <img src="https://i.postimg.cc/YSctCjrq/sketches.png" alt="Initial sketches" class="iter-img">
+      </div>
+      <p class="cs-caption">Initial sketches: exploring conceptual view tabs, semantic relationships, and component linking.</p>
+
+      <div class="iter-img-wrap reveal">
+        <img src="https://i.postimg.cc/HLGTkjYm/lofis.png" alt="Low fidelity wireframes" class="iter-img">
+      </div>
+      <p class="cs-caption">Low fidelity wireframes: panel layouts for All Layers, Relationships View, Tags View, and the layer property sidebar.</p>
+
+      <h3 class="iter-subhead reveal">Final Prototype</h3>
+      <p>After locking in the core interaction model, we moved into high-fidelity in Figma. The prototype covers the full Relationships and Attributes flow end to end.</p>
+
+      <div class="iter-img-wrap reveal">
+        <img src="https://i.postimg.cc/1zZZZTBs/973f16c4_c53c_43ca_a4de_cfc26f1d42a7.gif" alt="Final prototype walkthrough" class="iter-img">
+      </div>
+      <p class="cs-caption">High-fidelity Figma prototype: creating relationships, filtering layers, and assigning attributes.</p>
+
+      <div class="reveal" style="margin-top:40px;">
+        <p style="font-size:15px;line-height:1.75;color:var(--gray-4);margin-bottom:16px;">The final prototype demonstrates how this concept holds up in practice:</p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-family:var(--f-sans);font-size:15px;font-weight:400;line-height:1.7;color:var(--gray-4);padding-left:16px;border-left:2px solid var(--vectea-purple);">Conceptual layer relationships are stored in the tool through the <img src="https://i.postimg.cc/c4MPtSqy/relationship-icon.png" class="feat-icon" alt=""> Relationships panel, rather than existing only in the artist's head.</li>
+          <li style="font-family:var(--f-sans);font-size:15px;font-weight:400;line-height:1.7;color:var(--gray-4);padding-left:16px;border-left:2px solid var(--vectea-purple);">Artists can filter and act on groups of layers by meaning rather than position, reducing the mental overhead of tracking what belongs together.</li>
+          <li style="font-family:var(--f-sans);font-size:15px;font-weight:400;line-height:1.7;color:var(--gray-4);padding-left:16px;border-left:2px solid var(--vectea-purple);"><img src="https://i.postimg.cc/c4MPtSqy/relationship-icon.png" class="feat-icon" alt=""> Relationships and <img src="https://i.postimg.cc/nVwJcZJ8/attribute-icon.png" class="feat-icon" alt=""> Attributes sit on top of the existing layer stack without replacing it, so adopting them feels natural.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section class="cs-section reveal" id="reflection">
+      <div class="sec-eyebrow">Reflection</div>
+      <h2>What we'd change, and where this goes.</h2>
+      <p>We're genuinely proud of what Vectea became as a concept. It addresses a real problem in a way that feels intuitive. That said, there are things we'd go back and fix, and a lot more we'd want to build out.</p>
+
+      <div class="img-2col reveal" style="margin-top:32px;">
+        <div>
+          <p><strong>Limitations</strong></p>
+          <ul class="limit-list">
+            <li>Creating a relationship takes too many steps. It needs to feel more like tagging, not filling out a form.</li>
+            <li>Less useful for simpler projects where folders already do the job fine.</li>
+            <li>No inline layer viewing means you still have to toggle between views, which is a version of the same problem we set out to solve.</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Next Steps</strong></p>
+          <ul class="next-list">
+            <li>AI-suggested relationships based on layer names and visual similarity.</li>
+            <li>User testing with working illustrators to see how it fits into a real workflow.</li>
+            <li>Inline layer previews inside each Relationship group so view-switching becomes optional.</li>
+            <li>Explore how Relationships could tie into masking operations across groups.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-callout reveal" style="margin-top:48px;">
+        <p style="margin-bottom:8px;"><img src="https://i.postimg.cc/NMn2xVZZ/vectealogo.png" alt="Vectea" style="height:18px; display:block;"></p>
+        <p>Design tools should organize by meaning, not just position. Vectea is a small step toward that.</p>
+      </div>
+
+      <div class="team-photo-outer reveal" style="margin-top:56px; padding-left:32px;">
+        <div class="team-photo-wrap" style="max-width:560px; position:relative; margin-left:0;">
+          <!-- decorative elements -->
+          <svg class="team-deco" viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;">
+            <!-- top-left corner bracket -->
+            <line x1="-16" y1="20" x2="-16" y2="-16" stroke="#6C63FF" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="-16" y1="-16" x2="20" y2="-16" stroke="#6C63FF" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- bottom-right corner bracket -->
+            <line x1="576" y1="340" x2="576" y2="376" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="576" y1="376" x2="540" y2="376" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- top-right dot cluster -->
+            <circle cx="590" cy="12" r="3" fill="#6C63FF" opacity="0.6"/>
+            <circle cx="602" cy="12" r="3" fill="#6C63FF" opacity="0.6"/>
+            <circle cx="614" cy="12" r="3" fill="#6C63FF" opacity="0.6"/>
+            <circle cx="590" cy="24" r="3" fill="#6C63FF" opacity="0.3"/>
+            <circle cx="602" cy="24" r="3" fill="#6C63FF" opacity="0.3"/>
+            <circle cx="614" cy="24" r="3" fill="#6C63FF" opacity="0.3"/>
+            <!-- bottom-left x mark -->
+            <line x1="-28" y1="348" x2="-18" y2="358" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+            <line x1="-18" y1="348" x2="-28" y2="358" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+            <!-- small purple square top -->
+            <rect x="220" y="-22" width="10" height="10" fill="none" stroke="#6C63FF" stroke-width="2" opacity="0.5"/>
+            <!-- orange plus right -->
+            <line x1="590" y1="180" x2="600" y2="180" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+            <line x1="595" y1="175" x2="595" y2="185" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <img src="https://i.imgur.com/iIV6D64.png" alt="The team behind Vectea" style="width:100%; display:block;">
+          <div class="team-photo-caption" style="margin-top:16px; opacity:0.45; border-top: 1px solid var(--gray-1); padding: 10px 14px;">The team behind Vectea</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<div class="cs-footer">
+  <div class="cs-footer-inner">
+    <a href="index.html" class="cs-footer-back">← Back to all projects</a>
+    <div>
+      <div class="cs-next-label">Next case study</div>
+      <a href="privy.html" class="cs-next-link">Privy <span>→</span></a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  <span class="footer-name">Gavin Nguyen</span>
+  <span class="footer-right">Product Design @ UCSD</span>
+</footer>
+
+<script>
+  // Hamburger
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // Eased scroll
+  (function() {
+    let current = window.scrollY, target = window.scrollY, ease = 0.08, running = false;
+    function lerp(a,b,t){return a+(b-a)*t;}
+    function tick(){
+      current=lerp(current,target,ease);
+      if(Math.abs(current-target)<0.5){current=target;running=false;return;}
+      document.documentElement.scrollTop=current;
+      requestAnimationFrame(tick);
+    }
+    window.addEventListener('wheel',function(e){
+      e.preventDefault();
+      target=Math.max(0,Math.min(document.body.scrollHeight-window.innerHeight,target+e.deltaY));
+      if(!running){running=true;requestAnimationFrame(tick);}
+    },{passive:false});
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        const id=this.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(!el)return;
+        e.preventDefault();
+        target=el.getBoundingClientRect().top+window.scrollY-48;
+        if(!running){running=true;requestAnimationFrame(tick);}
+      });
+    });
+  })();
+
+  // Sidebar active state
+  const sections = document.querySelectorAll('.cs-section');
+  const navLinks = document.querySelectorAll('#sidebarNav a');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navLinks.forEach(link=>{
+          link.classList.remove('active');
+          if(link.getAttribute('href')==='#'+entry.target.id) link.classList.add('active');
+        });
+      }
+    });
+  },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+  sections.forEach(s=>io.observe(s));
+
+  // Scroll reveals
+  const ro = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}
+    });
+  },{threshold:0.04,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
