@@ -87,6 +87,13 @@ body::after {
 .nav-menu-btn { display: none; }
 @media (max-width: 960px) {
   .nav-menu-btn { display: flex; }
+  nav {
+    padding-top: env(safe-area-inset-top);
+    height: calc(64px + env(safe-area-inset-top));
+  }
+  .mobile-nav {
+    top: calc(64px + env(safe-area-inset-top));
+  }
 }
 nav {
   position: fixed;
@@ -1714,9 +1721,9 @@ footer {
       </div>
       <div class="contact-right">
         <div class="contact-links-clean">
-          <a href="/cdn-cgi/l/email-protection#dfb8b2b1efefee9faabcacbbf1babbaa" class="contact-link-clean">
+          <a href="mailto:gmn001@ucsd.edu" class="contact-link-clean">
             <span class="contact-link-label">Email</span>
-            <span class="contact-link-val"><span class="__cf_email__" data-cfemail="91f6fcffa1a1a0d1e4f2e2f5bff4f5e4">[email&#160;protected]</span></span>
+            <span class="contact-link-val">gmn001@ucsd.edu</span>
           </a>
           <a href="https://www.linkedin.com/in/gavinngu/" class="contact-link-clean" target="_blank">
             <span class="contact-link-label">LinkedIn</span>
