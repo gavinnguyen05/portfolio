@@ -13,6 +13,8 @@
   --accent: #2D3A2E; --accent-mid: #4a6b4c; --accent-light: #8aab8c;
   --f-head: 'Inter Tight', 'Helvetica Neue', Helvetica, sans-serif;
   --f-sans: 'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+  --g1: #E8E4DF; --g4: #5A554F; --ac: #2D3A2E; --ac2: #4a6b4c;
+  --sp: cubic-bezier(.34,1.56,.64,1);
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: auto; }
@@ -25,29 +27,47 @@ body::after {
 
 /* NAV */
 .nav-menu-btn { display: none; }
-@media (max-width: 960px) { .nav-menu-btn { display: flex; } .nav-links { display: none; } }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 56px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(244,242,238,0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--gray-1); }
-.nav-logo { text-decoration: none; display: flex; align-items: center; }
-.nav-logo img { height:28px; object-fit:contain; }
-.nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
-.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-4); text-decoration: none; transition: color .15s; position: relative; }
-.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width .2s ease; }
-.nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after { width: 100%; }
-.nav-resume .arrow { display: inline-block; transition: transform .15s ease; margin-left: 2px; }
-.nav-resume:hover .arrow { transform: translate(2px,-2px); }
-.nav-cta { font-family: var(--f-head); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper) !important; background: var(--accent); padding: 9px 18px; text-decoration: none; transition: background .15s !important; }
-.nav-cta:hover { background: var(--accent-mid) !important; }
-.nav-menu-btn { background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
-.nav-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: transform .2s, opacity .2s; }
-.nav-menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-menu-btn.open span:nth-child(2) { opacity: 0; }
-.nav-menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 199; background: rgba(244,242,238,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--gray-1); flex-direction: column; }
-.mobile-nav.open { display: flex; }
-.mobile-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-4); text-decoration: none; padding: 18px 32px; border-bottom: 1px solid var(--gray-1); transition: color .15s; }
-.mobile-nav a:last-child { border-bottom: none; }
-.mobile-nav a:hover { color: var(--accent); }
+/* ═══ NAV ═══ */
+nav {
+  position:static;
+  height:64px; padding:0 56px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(244,242,238,.9);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--g1);
+  transition:box-shadow .3s;
+}
+nav.scrolled { box-shadow:0 2px 20px rgba(45,58,46,.08); }
+.nav-logo { text-decoration:none; display:flex; align-items:center; }
+.nav-logo img { height:32px; opacity:1; transition:opacity .35s; object-fit:contain; }
+.nav-links { display:flex; align-items:center; gap:16px; list-style:none; }
+.nav-links a {
+  font-family: 'Inter Tight', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--g4); text-decoration:none; padding:7px 14px; border-radius:100px;
+  display:inline-block;
+  transition:background .15s, color .15s, transform .22s var(--sp);
+}
+.nav-links a:hover { background:rgba(45,58,46,.08); color:var(--ac); transform:translateY(-1px) scale(1.04); }
+.nav-cta { background:var(--ac)!important; color:#fff!important; }
+.nav-cta:hover { background:var(--ac2)!important; color:#fff!important; box-shadow:0 5px 18px rgba(45,58,46,.3)!important; transform:translateY(-2px) scale(1.05)!important; }
+.nav-ham { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-ham span { display:block; width:20px; height:1.5px; background:#0D0C0B; border-radius:2px; transition:transform .22s, opacity .22s; }
+.nav-ham.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-ham.open span:nth-child(2) { opacity:0; }
+.nav-ham.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.mob-nav {
+  position:static;
+  background:#F4F2EE; border-bottom:1px solid #E8E4DF;
+  max-height:0; overflow:hidden; transition:max-height .3s;
+}
+.mob-nav.open { max-height:280px; }
+.mob-nav a {
+  display:block; padding:16px 24px; font-size:14px; font-weight:600;
+  color:#0D0C0B; text-decoration:none; border-bottom:1px solid #E8E4DF;
+  transition:background .15s, color .15s;
+}
+.mob-nav a:hover { background:rgba(45,58,46,.06); color:#2D3A2E; }
 
 /* MAIN */
 main {
@@ -130,23 +150,22 @@ footer { padding: 24px 56px; display: flex; justify-content: space-between; bord
 <body>
 
 <nav>
-  <a class="nav-logo" href="/"><img src="https://i.imgur.com/5WZXcE4.png" alt="GN" style="height:28px;object-fit:contain;"></a>
+  <a class="nav-logo" href="/"><img src="https://i.imgur.com/5WZXcE4.png" alt="GN" style="height:32px;object-fit:contain;"></a>
   <ul class="nav-links">
     <li><a href="/#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank" class="nav-resume">Resume <span class="arrow">↗</span></a></li>
+    <li><a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank">Resume ↗</a></li>
     <li><a href="/#contact" class="nav-cta">Get in touch</a></li>
   </ul>
-  <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
+  <button class="nav-ham" id="menuBtn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<div class="mobile-nav" id="mobileNav">
-  <a href="/#work" class="mobile-nav-link">Work</a>
-  <a href="about.html" class="mobile-nav-link">About</a>
-  <a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank" class="mobile-nav-link">Resume ↗</a>
-  <a href="/#contact" class="mobile-nav-link">Get in touch</a>
+<div class="mob-nav" id="mobileNav">
+  <a href="/#work">Work</a>
+  <a href="about.html">About</a>
+  <a href="https://drive.google.com/file/d/1OwMjiYEsNg8RfgZWlHVRF5QVLaBBWClm/view?usp=sharing" target="_blank">Resume ↗</a>
+  <a href="/#contact">Get in touch</a>
 </div>
 
 <main>
@@ -196,16 +215,7 @@ footer { padding: 24px 56px; display: flex; justify-content: space-between; bord
 
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
-  menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-  });
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menuBtn.classList.remove('open');
-      mobileNav.classList.remove('open');
-    });
-  });
+  menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('open'); mobileNav.classList.toggle('open'); });
 
   (function() {
     let current = window.scrollY, target = window.scrollY, running = false;
