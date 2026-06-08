@@ -441,7 +441,11 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
     <h1 class="cs-headline">A website that feels as unhurried as the café itself.</h1>
   </div>
   <div class="cs-hero-img">
-    <img src="https://i.imgur.com/oFjeT8C.jpeg" alt="Easy Does It café interior">
+    <video
+      src="https://api-f.streamable.com/api/v1/videos/a4uy1u/mp4"
+      autoplay muted loop playsinline
+      style="width:100%; height:100%; object-fit:cover; display:block;"
+    ></video>
   </div>
 </header>
 
@@ -476,6 +480,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
       <li><a href="#problem">The Problem</a></li>
       <li><a href="#concept">Concept</a></li>
       <li><a href="#research">User Research</a></li>
+      <li><a href="#design">Visual Design</a></li>
       <li><a href="#user-testing">User Testing</a></li>
     </ul>
     <a class="sidebar-back" href="/">← Back to all projects</a>
@@ -493,8 +498,10 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
 
       <p>This project was about closing that gap by designing a website that earns the same trust the café earns in person.</p>
 
-      <div class="cs-callout reveal">
-        <p>The goal was to take someone from "I saw this on Instagram" all the way to "I know exactly what to expect when I walk in," without a single moment of friction along the way.</p>
+      <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:40px 0;">
+        <img src="https://i.imgur.com/r3TfGIE.jpeg" alt="Easy Does It café" style="width:100%; height:220px; object-fit:cover; display:block;">
+        <img src="https://i.imgur.com/9f754Wx.jpeg" alt="Easy Does It café" style="width:100%; height:220px; object-fit:cover; display:block;">
+        <img src="https://i.imgur.com/qMnZzgr.jpeg" alt="Easy Does It café" style="width:100%; height:220px; object-fit:cover; display:block;">
       </div>
     </section>
 
@@ -504,6 +511,14 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
       <h2>Three problems working against the same café.</h2>
 
       <p>Customers often discover the café either through word of mouth or via social media. Once interest is established, the user's next step is to learn more about the café before deciding whether they want to visit. These details are scattered across Instagram, Google, and Yelp, and because Easy Does It isn't like a traditional café, some customers end up confused or uncertain.</p>
+
+      <!-- SOCIAL IDENTITY FRAME -->
+      <div class="reveal" style="margin: 40px 0 0; background: #fff; border: 1px solid var(--gray-1); padding: 20px; box-shadow: 0 2px 20px rgba(13,12,11,0.06);">
+        <div id="socialMarqueeWrap" style="height: 340px; overflow: hidden; position: relative;">
+          <canvas id="socialMarqueeCanvas" style="display:block; width:100%; height:340px;"></canvas>
+        </div>
+      </div>
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3); margin: 10px 0 32px; text-align: left; line-height: 1.5;">Easy Does It's current social media presence, fragmented across platforms with no consistent visual identity</p>
 
       <div class="pain-grid reveal">
         <div class="pain-card">
@@ -657,6 +672,31 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
     </section>
 
     <!-- USER TESTING CHANGES -->
+    <!-- DESIGN -->
+    <section class="cs-section reveal" id="design">
+      <div class="sec-eyebrow">Visual Design</div>
+      <h2>Creating a consistent visual identity.</h2>
+
+      <p>Easy Does It already had a clear personality through its earthy colors, hand-drawn frog, and relaxed handwritten wordmark. What stood out during our research was that these elements weren't being used consistently across different touchpoints. So we pulled from the café's existing palette of warm neutrals and espresso tones, paired it with simple editorial typography, and made choices that reflected the calm, welcoming atmosphere of the space.</p>
+
+      <!-- MOODBOARD -->
+      <div class="reveal" style="margin: 40px 0 8px;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gray-3); margin-bottom:12px;">Moodboard</div>
+        <img src="https://i.imgur.com/RrzImYm.jpeg" alt="Moodboard and visual inspiration" style="width:100%; display:block; border:1px solid var(--gray-1);">
+      </div>
+      <p class="cs-caption">Visual direction and inspiration references.</p>
+
+
+
+      <!-- BRANDING GUIDE -->
+      <div class="reveal" style="margin: 40px 0 8px;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gray-3); margin-bottom:12px;">Branding Guide</div>
+        <img src="https://i.imgur.com/bOJDowt.png" alt="Branding guide" style="width:100%; display:block; border:1px solid var(--gray-1);">
+      </div>
+      <p class="cs-caption">Color, typography, and component decisions documented for consistency.</p>
+
+    </section>
+
     <section class="cs-section reveal" id="user-testing">
       <div class="sec-eyebrow">User Testing</div>
       <h2>Testing revealed where the design was getting in its own way.</h2>
@@ -804,6 +844,23 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
   </main>
 </div>
 
+<!-- FINAL VIDEO -->
+<div style="background: var(--edi-linen); border-top: 1px solid var(--gray-1); padding: 80px 56px;">
+  <div style="max-width: 1280px; margin: 0 auto;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--edi-terra); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+      Final Design
+      <span style="flex:1; height:1px; background:var(--gray-1); display:block;"></span>
+    </div>
+    <h2 style="font-family:var(--f-head); font-weight:700; font-size:clamp(26px,3vw,38px); letter-spacing:-0.03em; line-height:1.05; margin-bottom:32px; color:var(--ink);">The finished website, end to end.</h2>
+    <video
+      src="https://api-f.streamable.com/api/v1/videos/r46fzd/mp4"
+      controls
+      playsinline
+      style="width:100%; display:block; border:1px solid var(--gray-1); background:#000;"
+    ></video>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <div class="cs-footer">
   <div class="cs-footer-inner">
@@ -844,6 +901,70 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(45,58,46,.08); }
       tar = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 68);
       if(!raf) raf = requestAnimationFrame(tick);
     });
+  });
+})();
+
+// Horizontal infinite marquee for social identity image
+(function(){
+  var canvas = document.getElementById('socialMarqueeCanvas');
+  if(!canvas) return;
+  var wrap = document.getElementById('socialMarqueeWrap');
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  var offset = 0;
+  var raf = null;
+  var speed = 0.4; // px per frame — slow and steady
+
+  function resize(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = wrap.offsetWidth;
+    var h = 340;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(){
+    if(!img.complete || !img.naturalWidth) { raf = requestAnimationFrame(draw); return; }
+    var cw = canvas.width / (window.devicePixelRatio || 1);
+    var ch = canvas.height / (window.devicePixelRatio || 1);
+
+    // Scale so image height exactly fills the frame height — no zoom, no vertical crop
+    var scale = ch / img.naturalHeight;
+    var drawW = img.naturalWidth * scale;
+    var drawH = ch; // always exactly the canvas height
+
+    var gap = 40;
+    offset += speed;
+    if(offset >= drawW + gap) offset -= (drawW + gap);
+
+    ctx.clearRect(0, 0, cw, ch);
+
+    var x1 = -offset;
+    var x2 = x1 + drawW + gap;
+    var x3 = x2 + drawW + gap;
+
+    ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, x1, 0, drawW, drawH);
+    ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, x2, 0, drawW, drawH);
+    if(x3 < cw) {
+      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, x3, 0, drawW, drawH);
+    }
+
+    raf = requestAnimationFrame(draw);
+  }
+
+  img.onload = function(){
+    resize();
+    if(raf) cancelAnimationFrame(raf);
+    draw();
+  };
+  img.src = 'https://i.imgur.com/XtL0nUx.jpeg';
+
+  window.addEventListener('resize', function(){
+    resize();
   });
 })();
 
